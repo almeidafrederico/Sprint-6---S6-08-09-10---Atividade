@@ -82,7 +82,7 @@ function adicionarEnderecoEmPessoa(newEndereco){
 
 //S6-09| 💪 Atividade - Javascript: Exercitando Objetos - Katas
 
-const carros = [
+let carros = [
     {
     modelo:"Ka",
     marca:"Ford",
@@ -175,10 +175,99 @@ function precoTotal(estoque){
     let valorTotal = 0;
     for(let i in estoque){
         let price = Number(estoque[i].preco.replace(/\D/g, ''))
-        console.log(price);
         valorTotal+=price;
-        console.log(valorTotal/100)
     }
-    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'BR' }).format(valorTotal)
-    return valorTotal/100;
+    valorTotal = (valorTotal/100).toFixed(2)
+    return `A soma do preço de todos veículos é R$ ${valorTotal}`.replace('.',',');
 }
+
+function filtraPorMarca(marca){
+    marcaEmEstoque = []
+    for(let i in carros){
+        if(carros[i].marca===marca){
+            marcaEmEstoque.push(carros[i]);
+        }
+    }
+    return marcaEmEstoque;
+}
+
+function filtraPorAcessorio(acessorio, estoque){
+    let carroAcessario = [];
+    for(let i in estoque){
+        if(estoque[i].acessorios.find(element => element == acessorio)){
+            carroAcessario.push(estoque[i]);
+        }
+    }
+    return carroAcessario
+}
+
+function eCarroCompleto(estoque){
+    let carrosCompletos = [];
+    for(let i in estoque){
+        if(estoque[i].completo){
+            carrosCompletos.push(estoque[i]);
+        }
+    }
+    return carrosCompletos
+}
+
+function adicionaCarro(carroNovo){
+    let newCarro = {
+        modelo:`${carroNovo.modelo}`,
+        marca:`${carroNovo.marca}`,
+        ano:`${carroNovo.ano}`,
+        cor:`${carroNovo.cor}`,
+        completo: carroNovo.completo,
+        acessorios: carroNovo.acessorios,
+        preco: `R$ ${carroNovo.preco}`
+    }
+    carros.push(newCarro);
+    return carros    
+}
+
+let argo = {
+    modelo:"Argo",
+    marca:"Fiat",
+    ano:"2022",
+    cor:"Preto",
+    completo: true,
+    acessorios: ['Alarme', 'Trava', 'Ar', 'Vidro Elétrico'],
+    preco: 'R$ 60.251,36',
+}
+
+function removeCarro(estoque, id){
+    newEstoque = [];
+    for(let i in estoque){
+        if(i != id){
+            newEstoque.push(estoque[i]);
+        };
+    };
+    carros = newEstoque;
+    return carros
+}
+
+function contaCarrosNovos(estoque){
+    let conta = 0;
+    for(let i in estoque){
+        if(estoque[i].ano > (2022-10)){
+            conta++;
+        }
+    }
+    return conta;
+}
+
+function contaCarrosVelhos(estoque){
+    let conta = 0;
+    for(let i in estoque){
+        if(estoque[i].ano < (2022-10)){
+            conta++;
+        }
+    }
+    return conta;
+}
+
+function insereDono(list,position,person){
+    list[position].donos = [person]
+}
+//Chamada da função
+insereDono(carros,1,{nome: 'Jhon Dhoe', cpf: '122-133-144-55'})
