@@ -271,3 +271,59 @@ function insereDono(list,position,person){
 }
 //Chamada da função
 insereDono(carros,1,{nome: 'Jhon Dhoe', cpf: '122-133-144-55'})
+
+//S6-10| 💪 Atividades - JavaScript: Loteria Premiada
+// Exercício 1- Pessoa Premiada
+
+let ganhador = {
+    nome: 'Adamastor',
+    nascimento: '16/09/1986',
+    cpf: '123.321.789-98',
+    estadoCivil: 'Casado'
+};
+
+let ganhadoresFalsos = [];
+
+function eGanhador(pessoa){
+    if(ganhador.nome.toUpperCase()===pessoa.nome.toUpperCase() && ganhador.cpf===pessoa.cpf){
+        return "É ganhador!"
+    }else{
+        ganhardores.push(pessoa);
+        return "É alarme falso!"
+    } 
+}
+let ganhadorSuposto = {
+    nome: 'adamastor', 
+    cpf : '123.321.789-98'
+}
+console.log(eGanhador(ganhadorSuposto))
+// O retorno deverá ser 'É ganhador!'
+
+//🧠 Exercício 2- Quem veio atrás do prêmio ?
+
+function naoGanhadores(list){
+    let pessoasTentaramPegarPremio = [];
+    for(let i in list){
+        pessoasTentaramPegarPremio.push(list[i].nome);
+    }
+    return `${list.length} Pessoa tentou retirar o prêmio. Nomes: ${pessoasTentaramPegarPremio}`
+}
+
+let ListTentaramRetirar = [{
+    nome: 'adam123', 
+    cpf : '123.324.789-98'
+},{
+    nome: 'a53or', 
+    cpf : '123.321.789-98'
+},{
+    nome: 'a12stor', 
+    cpf : '123.321.789-98'
+},{
+    nome: 'ada567r', 
+    cpf : '123.321.789-98'
+},{
+    nome: 'fred', 
+    cpf : '123.321.789-98'
+}]
+    
+
